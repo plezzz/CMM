@@ -19,21 +19,20 @@ class CardController extends AbstractController
         $files1 = scandir($dir);
         $files = strval($files1[3]);
 
-        $counter = 0;
-
-foreach ($files1 as $file){
-    $handle = @fopen("/volume1/web/cardmarket11/allCards/".$file, "r");
-    if ($handle) {
-        while (($buffer = fgets($handle, 4096)) !== false) {
-            echo $buffer;
-        }
-        if (!feof($handle)) {
-            echo "Error: unexpected fgets() fail\n";
-        }
-        fclose($handle);
-    }
-    $counter++;
-}
+        $counter = 343;
+//        foreach ($files1 as $file){
+//    $handle = @fopen("/volume1/web/cardmarket11/allCards/".$file, "r");
+//    if ($handle) {
+//        while (($buffer = fgets($handle, 4096)) !== false) {
+//            echo $buffer;
+//        }
+//        if (!feof($handle)) {
+//            echo "Error: unexpected fgets() fail\n";
+//        }
+//        fclose($handle);
+//    }
+//    $counter++;
+//}
 
 
 

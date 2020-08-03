@@ -4,12 +4,15 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -19,12 +22,18 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $password;
 
@@ -34,9 +43,9 @@ class User
     private $createdOn;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $edited_on;
+    private $editedOn;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
@@ -68,15 +77,19 @@ class User
      */
     private $cmAccessSecret;
 
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->username;
+        return (string) $this->username;
     }
 
     public function setUsername(string $username): self
@@ -86,9 +99,31 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->password;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -97,6 +132,24 @@ class User
 
         return $this;
     }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
 
     public function getCreatedOn(): ?\DateTimeInterface
     {
@@ -112,12 +165,12 @@ class User
 
     public function getEditedOn(): ?\DateTimeInterface
     {
-        return $this->edited_on;
+        return $this->editedOn;
     }
 
-    public function setEditedOn(\DateTimeInterface $edited_on): self
+    public function setEditedOn(?\DateTimeInterface $editedOn): self
     {
-        $this->edited_on = $edited_on;
+        $this->editedOn = $editedOn;
 
         return $this;
     }
@@ -175,7 +228,7 @@ class User
         return $this->cmAccessToken;
     }
 
-    public function setCmAccessToken(string $cmAccessToken): self
+    public function setCmAccessToken(?string $cmAccessToken): self
     {
         $this->cmAccessToken = $cmAccessToken;
 
