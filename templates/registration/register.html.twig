@@ -1,21 +1,21 @@
 {#{% block title %}Register{% endblock %}#}
 
 {#{% block body %}#}
-{#    {% for flashError in app.flashes('verify_email_error') %}#}
-{#        <div class="alert alert-danger" role="alert">{{ flashError }}</div>#}
-{#    {% endfor %}#}
+{#{% for flashError in app.flashes('verify_email_error') %}#}
+{#    <div class="alert alert-danger" role="alert">{{ flashError }}</div>#}
+{#{% endfor %}#}
 
-{#    <h1>Register</h1>#}
+{#<h1>Register</h1>#}
 
-{#    {{ form_start(registrationForm) }}#}
-{#        {{ form_row(registrationForm.username) }}#}
-{#        {{ form_row(registrationForm.password, {#}
-{#            label: 'Password'#}
-{#        }) }}#}
-{#        {{ form_row(registrationForm.agreeTerms) }}#}
+{#{{ form_start(registrationForm) }}#}
+{#{{ form_row(registrationForm.username) }}#}
+{#{{ form_row(registrationForm.password, {#}
+{#    label: 'Password'#}
+{#}) }}#}
+{#{{ form_row(registrationForm.agreeTerms) }}#}
 
-{#        <button type="submit" class="btn">Register</button>#}
-{#    {{ form_end(registrationForm) }}#}
+{#<button type="submit" class="btn">Register</button>#}
+{#{{ form_end(registrationForm) }}#}
 {#{% endblock %}#}
 <!DOCTYPE html>
 <html lang="en">
@@ -26,20 +26,18 @@
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('assets/img/favicon.png') }}">
 
-    <title>QuillPro - Bootstrap 4 Dashboard Template</title>
+    <title>CMM - Register</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext"
+          rel="stylesheet">
 
     <!-- CSS - REQUIRED - START -->
-    <!-- Batch Icons -->
-    <link rel="stylesheet" href="{{ asset('assets/fonts/batch-icons/css/batch-icons.css') }}">
+
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.min.css') }}">
-    <!-- Custom Scrollbar -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.min.css') }}">
-    <!-- Hamburger Menu -->
-    <link rel="stylesheet" href="{{ asset('assets/css/hamburgers/hamburgers.css') }}">
+
+
 
     <!-- CSS - REQUIRED - END -->
 
@@ -47,239 +45,147 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome/css/font-awesome.min.css') }}">
 
+
     <!-- CSS - DEMO - START -->
-    <link rel="stylesheet" href="{{ asset('assets/demo/css/ui-icons-batch-icons.css') }}">
+
     <!-- CSS - DEMO - END -->
 
     <!-- CSS - OPTIONAL - END -->
 
     <!-- QuillPro Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/quillpro/quillpro.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/loginStyle.css') }}">
 
 
 </head>
 
 <body>
+<div class="row">
+    <div class="mt-4 ml-4"> <a class="" href="{{ path('home') }}">
+            <img src="{{ asset('assets/img/logo-dark.png') }}" alt="QuillPro" width="145" height="32.3">
+        </a></div>
 
-<div class="container-fluid">
-{#    <div class="row">#}
-{#        <div class="right-column sisu">#}
-{#            <div class="row mx-0">#}
-{#                <div class="col-md-7 order-md-2 signin-right-column px-5 bg-dark">#}
-{#                    <a class="signin-logo d-sm-block d-md-none" href="#">#}
-{#                        <img src="{{ asset('assets/img/logo-white.png') }}" width="145" height="32.3" alt="QuillPro">#}
-{#                    </a>#}
-{#                    <h1 class="display-4">Sign In To get Started</h1>#}
-{#                    <p class="lead mb-5">#}
-{#                        Big data latte SpaceTeam unicorn cortado hacker physical computing paradigm.#}
-{#                    </p>#}
-{#                </div>#}
-
-
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-
-    <main class="main-content p-5" role="main">
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="col-md-5 order-md-1 bg-white px-5 m-5">
-                            <a class="signin-logo d-sm-none d-md-block" href="#">
-                                <img src="{{ asset('assets/img/logo-dark.png') }}" width="145" height="32.3" alt="QuillPro">
-                            </a>
-                        </div>
-                        User Registration
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-sm bg-gradient" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <div class="card-form-wizard">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div id="rootwizard-1">
-                                    <ul class="nav nav-pills wizard-header">
-                                        <li>
-                                            <a href="#tab1" data-toggle="tab">
-															<span class="main-text">
-																<span class="h3">1. Registration</span>
-																<small>This step has validation</small>
-															</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab2" data-toggle="tab">
-															<span class="main-text">
-																<span class="h3">2. Optional Info</span>
-																<small>No validation required</small>
-															</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab3" data-toggle="tab">
-															<span class="main-text">
-																<span class="h3">3. Review Data</span>
-																<small>Here's a summary of what you entered.</small>
-															</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab4" data-toggle="tab">
-															<span class="main-text">
-																<span class="h3">4. Finish</span>
-																<small>You're done!</small>
-															</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content clearfix">
-                                        <div class="tab-pane" id="tab1">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <form method="post" id="wizard-stage-1">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Username</label>
-                                                            <input type="text" class="form-control wizard-stage-1-username" name="username" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label">Email address</label>
-                                                            <input type="text" class="form-control wizard-stage-1-email" name="email" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label">Password</label>
-                                                            <input type="password" class="form-control wizard-stage-1-password" name="password" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label">Repeat Password</label>
-                                                            <input type="password" class="form-control wizard-stage-1-password" name="Repeat Password" />
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab2">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <form method="post" id="wizard-stage-2">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Telephone</label>
-                                                            <input type="text" class="form-control wizard-stage-2-optional-1" name="username" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label">Your Address</label>
-                                                            <input type="text" class="form-control wizard-stage-2-optional-2" name="email" />
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label">Write something about yourself</label>
-                                                            <textarea class="form-control wizard-stage-2-optional-3" ></textarea>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab3">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-wizard-review-block"></div>
-                                                    <form method="post"  >
-
-                                                        <div class="col-sm-4 col-sm-offset-4">
-                                                            <a class="btn btn-default" href="{{ path('home') }}">Cancel</a>
-                                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab4">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <h2>You're Done!</h2>
-                                                    <p>Thanks for filling out this form. We'll get back to you shortly.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <ul class="pager wizard">
-                                            <li class="previous first" style="display:none;">
-                                                <a class="btn btn-light" href="#">
-                                                    <i class="batch-icon batch-icon-arrow-left"></i>
-                                                    First
-                                                </a>
-                                            </li>
-                                            <li class="previous">
-                                                <a class="btn btn-secondary" href="#">
-                                                    <i class="batch-icon batch-icon-arrow-left"></i>
-                                                </a>
-                                            </li>
-                                            <li class="next last" style="display:none;">
-                                                <a class="btn btn-primary" href="#">Last</a>
-                                            </li>
-                                            <li class="next">
-                                                <a class="btn btn-primary" href="#">
-                                                    Next
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+</div>
+{{ form_start(registrationForm) }}
+<div class="row m-5">
+    <div class="col-6">
+        <div class="bg-info p-5">
+            <h1 class="font-weight-bold">Personal Info</h1>
+            <div class="form-group">
+                {{ form_row(registrationForm.username) }}
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.
+                </small>
+            </div>
+            <div class="form-group">
+                {{ form_row(registrationForm.email) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(registrationForm.password, {
+                    label: 'Password'
+                }) }}
             </div>
         </div>
-    </main>
+    </div>
+    <div class="col-6 text-dark">
+        <div class="bg-dark p-5 text-dark">
+            <h1 class="text-danger font-weight-bold">CardMarket Info</h1>
+
+            <div class="form-group text-dark">
+                {{ form_row(registrationForm.cmAppToken) }}
+                <small id="emailHelp" class="form-text text-muted">We'll never share your cardmarket credentials with anyone
+                    else.
+                </small>
+            </div>
+            <div class="form-group">
+                {{ form_row(registrationForm.cmAppSecret) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(registrationForm.cmAccessToken) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(registrationForm.cmAccessSecret) }}
+            </div>
+        </div>
+    </div>
 </div>
+<div class="row mt-4">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <button type="submit" class="btn btn-primary btn-gradient btn-block"><span class="gradient">
+								<i class="batch-icon batch-icon-quill"></i>
+								Sign Up
+							</span></button>
+        <hr>
+        <p class="text-center">
+            Already Have An Account? <a href="{{ path('login') }}">Sign In here</a>
+        </p>
+    </div>
+    <div class="col-3"></div>
+</div>
+{{ form_end(registrationForm) }}
 
-<!-- SCRIPTS - REQUIRED START -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!-- Bootstrap core JavaScript -->
-<!-- JQuery -->
-<script type="text/javascript" src="{{ asset('assets/js/jquery/jquery-3.4.1.min.js') }}"></script>
-<!-- Popper.js - Bootstrap tooltips -->
-<script type="text/javascript" src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
-<!-- Velocity -->
-<script type="text/javascript" src="{{ asset('assets/plugins/velocity/velocity.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/plugins/velocity/velocity.ui.min.js') }}"></script>
-<!-- Custom Scrollbar -->
-<script type="text/javascript" src="{{ asset('assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-<!-- jQuery Visible -->
-<script type="text/javascript" src="{{ asset('assets/plugins/jquery_visible/jquery.visible.min.js') }}"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script type="text/javascript" src="{{ asset('assets/js/misc/ie10-viewport-bug-workaround.js') }}"></script>
 
-<!-- SCRIPTS - REQUIRED END -->
-<!-- Form Wizard -->
-<script type="text/javascript" src="{{ asset('assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js')}}"></script>
+
+{#<div class="row">#}
+{#        <div class="row mx-0">#}
+{#            {{ form_start(registrationForm) }}#}
+{#                <div class="bg-dark">#}
+{#                    <h1>Market Info</h1>#}
+
+{#                    <div class="form-group">#}
+{#                        {{ form_row(registrationForm.cmAppToken) }}#}
+{#                        <small id="emailHelp" class="form-text text-muted">We'll never share your cardmarket credentials with anyone#}
+{#                            else.#}
+{#                        </small>#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        {{ form_row(registrationForm.cmAppSecret) }}#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        {{ form_row(registrationForm.cmAccessToken) }}#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        {{ form_row(registrationForm.cmAccessSecret) }}#}
+{#                    </div>#}
+{#                    <button type="submit" class="btn btn-primary btn-gradient btn-block"><span class="gradient">#}
+{#								<i class="batch-icon batch-icon-quill"></i>#}
+{#								Sign Up#}
+{#							</span></button>#}
+{#                    <hr>#}
+{#                    <p class="text-center">#}
+{#                        Already Have An Account? <a href="/login">Sign In here</a>#}
+{#                    </p>#}
+{#                </div>#}
+{#                <div class="bg-white">#}
+{#                    <a class="signin-logo d-sm-none d-md-block" href="#">#}
+{#                        <img src="assets/img/logo-dark.png" alt="QuillPro" width="145" height="32.3">#}
+{#                    </a>#}
+{#                    <h1>Personal Info</h1>#}
+{#                    <div class="form-group">#}
+{#                        {{ form_row(registrationForm.username) }}#}
+{#                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone#}
+{#                            else.#}
+{#                        </small>#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        {{ form_row(registrationForm.email) }}#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        {{ form_row(registrationForm.password, {#}
+{#                            label: 'Password'#}
+{#                        }) }}#}
+{#                    </div>#}
+{#                </div>#}
+{#            {{ form_end(registrationForm) }}#}
+{#        </div>#}
+{#</div>#}
+
+
+
 <!-- Form Validation -->
-<script type="text/javascript" src="{{ asset('assets/plugins/form-validator/jquery.form-validator.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/plugins/form-validator/jquery.form-validator.min.js') }}"></script>
 <!-- SCRIPTS - OPTIONAL START -->
-<!-- Image Placeholder -->
-<script type="text/javascript" src="{{ asset('assets/js/misc/holder.min.js') }}"></script>
-<!-- SCRIPTS - OPTIONAL END -->
 
-<!-- QuillPro Scripts -->
-<script type="text/javascript" src="{{ asset('assets/js/scripts-jquery.js') }}"></script>
-<script>
-    window['_fs_debug'] = false;
-    window['_fs_host'] = 'fullstory.com';
-    window['_fs_org'] = '626JC';
-    window['_fs_namespace'] = 'FS';
-    (function(m,n,e,t,l,o,g,y){
-        if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
-        g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
-        o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js';
-        y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
-        g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
-        g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
-        g.consent=function(a){g("consent",!arguments.length||a)};
-        g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
-        g.clearUserCookie=function(){};
-    })(window,document,window['_fs_namespace'],'script','user');
-</script>
-<!-- Fullstory Session - End -->
 </body>
 </html>

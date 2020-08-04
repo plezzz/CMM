@@ -20,7 +20,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class)
+            ->add('username', TextType::class,['attr' => ['class' => '']])
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -49,8 +49,7 @@ class RegistrationFormType extends AbstractType
                 "type" => PasswordType::class,
                 "first_options" => ["label" => 'Password'],
                 'second_options' => ["label" => 'Repeat Password']
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
