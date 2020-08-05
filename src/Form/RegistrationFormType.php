@@ -20,8 +20,8 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class,['attr' => ['class' => '']])
-            ->add('email')
+            ->add('username', TextType::class,['attr' => ['class' => 'textColor']])
+            ->add('email', EmailType::class,['attr' => ['class' => 'textColor']])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -30,17 +30,20 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('cmAppToken')
-            ->add('cmAppSecret')
-            ->add('cmAccessToken')
-            ->add('cmAccessSecret')
+            ->add('firstName', TextType::class,['attr' => ['class' => 'textColor']])
+            ->add('lastName', TextType::class,['attr' => ['class' => 'textColor']])
+            ->add('cmAppToken', TextType::class,['attr' => ['class' => 'textColor']])
+            ->add('cmAppSecret', TextType::class,['attr' => ['class' => 'textColor']])
+            ->add('cmAccessToken', TextType::class,['attr' => ['class' => 'textColor']])
+            ->add('cmAccessSecret', TextType::class,['attr' => ['class' => 'textColor']])
             ->add('password', RepeatedType::class, [
+                'attr' => ['class' => 'textColor'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
                     ]),
                     new Length([
-                        'min' => 4,
+                        'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
