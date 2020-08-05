@@ -1,42 +1,176 @@
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}#}
 
-{% block title %}Log in!{% endblock %}
+{#{% block title %}Log in!{% endblock %}#}
 
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+{#{% block body %}#}
+{#<form method="post">#}
+{#    {% if error %}#}
+{#        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+{#    {% endif %}#}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+{#    {% if app.user %}#}
+{#        <div class="mb-3">#}
+{#            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
+{#        </div>#}
+{#    {% endif %}#}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+{#    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>#}
+{#    <label for="inputUsername">Username</label>#}
+{#    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>#}
+{#    <label for="inputPassword">Password</label>#}
+{#    <input type="password" name="password" id="inputPassword" class="form-control" required>#}
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+{#    <input type="hidden" name="_csrf_token"#}
+{#           value="{{ csrf_token('authenticate') }}"#}
+{#    >#}
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+{#    #}{##}
+{#        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
+{#        See https://symfony.com/doc/current/security/remember_me.html#}
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
+{#        <div class="checkbox mb-3">#}
+{#            <label>#}
+{#                <input type="checkbox" name="_remember_me"> Remember me#}
+{#            </label>#}
+{#        </div>#}
+{#    #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
-{% endblock %}
+{#    <button class="btn btn-lg btn-primary" type="submit">#}
+{#        Sign in#}
+{#    </button>#}
+{#</form>#}
+{#{% endblock %}#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ asset('assets/img/favicon.png') }}">
+
+    <title>QuillPro - Bootstrap 4 Dashboard Template</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+
+    <!-- CSS - REQUIRED - START -->
+    <!-- Batch Icons -->
+    <link rel="stylesheet" href="{{ asset('assets/fonts/batch-icons/css/batch-icons.css') }}">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.min.css') }}">
+    <!-- Custom Scrollbar -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.min.css') }}">
+    <!-- Hamburger Menu -->
+    <link rel="stylesheet" href="{{ asset('assets/css/hamburgers/hamburgers.css') }}">
+
+    <!-- CSS - REQUIRED - END -->
+
+    <!-- CSS - OPTIONAL - START -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome/css/font-awesome.min.css') }}">
+
+    <!-- CSS - DEMO - START -->
+    <link rel="stylesheet" href="{{ asset('assets/demo/css/ui-icons-batch-icons.css') }}">
+    <!-- CSS - DEMO - END -->
+
+    <!-- CSS - OPTIONAL - END -->
+
+    <!-- QuillPro Styles -->
+    <link rel="stylesheet" href="{{ asset('assets/css/quillpro/quillpro.css') }}">
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <form action="{{ path('login') }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="_password" />
+
+        {#
+            If you want to control the URL the user
+            is redirected to on success (more details below)
+            <input type="hidden" name="_target_path" value="/account" />
+        #}
+
+        <button type="submit">login</button>
+    </form>
+{#    <div class="row">#}
+{#        <div class="right-column sisu">#}
+{#            <div class="row mx-0">#}
+{#                <div class="col-md-7 order-md-2 signin-right-column px-5 bg-dark" data-qp-bg-image="bg-image-1.jpg">#}
+{#                    <a class="signin-logo d-sm-block d-md-none" href="#">#}
+{#                        <img src="{{ asset('assets/img/logo-white.png') }}" width="145" height="32.3" alt="QuillPro">#}
+{#                    </a>#}
+{#                    <h1 class="display-4">Sign In To get Started</h1>#}
+{#                    <p class="lead mb-5">#}
+{#                        Big data latte SpaceTeam unicorn cortado hacker physical computing paradigm.#}
+{#                    </p>#}
+{#                </div>#}
+{#                <div class="col-md-5 order-md-1 signin-left-column bg-white px-5">#}
+{#                    <a class="signin-logo d-sm-none d-md-block" href="#">#}
+{#                        <img src="{{ asset('assets/img/logo-dark.png') }}" width="145" height="32.3" alt="QuillPro">#}
+{#                    </a>#}
+{#                    <form action="{{ path('login') }}" method="post">#}
+{#                        <div class="form-group">#}
+{#                            <label for="exampleInputUsername">Username</label>#}
+{#                            <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" placeholder="Enter username">#}
+{#                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <label for="exampleInputPassword1">Password</label>#}
+{#                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">#}
+{#                        </div>#}
+{#                        <div class="custom-control custom-checkbox mb-3">#}
+{#                            <input type="checkbox" class="custom-control-input" id="keep-signed-in">#}
+{#                            <label class="custom-control-label" for="keep-signed-in">Keep Me Signed In</label>#}
+{#                        </div>#}
+{#                        <button type="submit" class="btn btn-primary btn-gradient btn-block">#}
+{#                            <i class="batch-icon batch-icon-key"></i>#}
+{#                            Sign In#}
+{#                        </button>#}
+{#                        <hr>#}
+{#                        <p class="text-center">#}
+{#                            Don't Have An Account? <a href="sisu-signup.html">Sign Up here</a>#}
+{#                        </p>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+</div>
+
+<!-- SCRIPTS - REQUIRED START -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Bootstrap core JavaScript -->
+<!-- JQuery -->
+<script type="text/javascript" src="{{ asset('assets/js/jquery/jquery-3.4.1.min.js') }}"></script>
+<!-- Popper.js - Bootstrap tooltips -->
+<script type="text/javascript" src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
+<!-- Velocity -->
+<script type="text/javascript" src="{{ asset('assets/plugins/velocity/velocity.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/plugins/velocity/velocity.ui.min.js') }}"></script>
+<!-- Custom Scrollbar -->
+<script type="text/javascript" src="{{ asset('assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<!-- jQuery Visible -->
+<script type="text/javascript" src="{{ asset('assets/plugins/jquery_visible/jquery.visible.min.js') }}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script type="text/javascript" src="{{ asset('assets/js/misc/ie10-viewport-bug-workaround.js') }}"></script>
+
+<!-- SCRIPTS - REQUIRED END -->
+
+<!-- SCRIPTS - OPTIONAL START -->
+<!-- Image Placeholder -->
+<script type="text/javascript" src="{{ asset('assets/js/misc/holder.min.js') }}"></script>
+<!-- SCRIPTS - OPTIONAL END -->
+
+<!-- QuillPro Scripts -->
+<script type="text/javascript" src="{{ asset('assets/js/scripts-jquery.js') }}"></script>
+<!-- Fullstory Session - End -->
+</body>
+</html>

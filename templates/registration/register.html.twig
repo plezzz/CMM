@@ -38,7 +38,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.min.css') }}">
 
 
-
     <!-- CSS - REQUIRED - END -->
 
     <!-- CSS - OPTIONAL - START -->
@@ -61,25 +60,31 @@
 
 <body>
 <div class="row">
-    <div class="mt-4 ml-4"> <a class="" href="{{ path('home') }}">
+
+
+    <div class="col-12 text-center mt-3"><a class="" href="{{ path('home') }}">
             <img src="{{ asset('assets/img/logo-dark.png') }}" alt="QuillPro" width="145" height="32.3">
         </a></div>
-
 </div>
+
+
+
+
 {{ form_start(registrationForm) }}
 <div class="row m-5">
-    <div class="col-6">
-        <div class="bg-info p-5">
-            <h1 class="font-weight-bold">Personal Info</h1>
+    <div class="col-4 order-md-1">
+        <div class="bg-primary p-5">
+            <h1 class="text-danger font-weight-bold">Account Info</h1>
             <div class="form-group">
                 {{ form_row(registrationForm.username) }}
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                    else.
-                </small>
             </div>
+            <div class="textColor">{{ form_label(registrationForm.email, 'Email*') }}</div>
             <div class="form-group">
-                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.email, {
+                    label: ' ',
+                }) }}
             </div>
+
             <div class="form-group">
                 {{ form_row(registrationForm.password, {
                     label: 'Password'
@@ -87,13 +92,28 @@
             </div>
         </div>
     </div>
-    <div class="col-6 text-dark">
+    <div class="col-4 order-md-2">
         <div class="bg-dark p-5 text-dark">
+            <h1 class="text-danger font-weight-bold">Personal Info</h1>
+            <div class="form-group">
+                {{ form_row(registrationForm.firstName) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(registrationForm.lastName) }}
+            </div>
+            <div class="form-group mt-1">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-4 text-dark order-md-3">
+        <div class="bg-primary p-5 text-dark">
             <h1 class="text-danger font-weight-bold">CardMarket Info</h1>
 
             <div class="form-group text-dark">
                 {{ form_row(registrationForm.cmAppToken) }}
-                <small id="emailHelp" class="form-text text-muted">We'll never share your cardmarket credentials with anyone
+                <small id="emailHelp" class="form-text text-muted">We'll never share your cardmarket credentials with
+                    anyone
                     else.
                 </small>
             </div>
@@ -180,7 +200,6 @@
 {#            {{ form_end(registrationForm) }}#}
 {#        </div>#}
 {#</div>#}
-
 
 
 <!-- Form Validation -->
