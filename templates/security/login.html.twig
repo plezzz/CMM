@@ -1,129 +1,256 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ asset('assets/img/favicon.png') }}">
 
-{% block title %}Log in!{% endblock %}
-{% block stylesheets %}
-    <link href="/css/authentication/form-1.css" rel="stylesheet" type="text/css"/>
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <link rel="stylesheet" type="text/css" href="/css/forms/theme-checkbox-radio.css">
-    <link rel="stylesheet" type="text/css" href="/css/forms/switches.css">
-{% endblock %}
+    <title>CMM - Login</title>
 
-{% block body %}
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext"
+          rel="stylesheet">
 
-    <div class="form-container">
-        <div class="form-form">
-            <div class="form-form-wrap">
-                <div class="form-container">
-                    <div class="form-content">
+    <!-- CSS - REQUIRED - START -->
+    <!-- Batch Icons -->
+    <link rel="stylesheet" href="{{ asset('assets/fonts/batch-icons/css/batch-icons.css') }}">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.min.css') }}">
+    <!-- Custom Scrollbar -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.min.css') }}">
+    <!-- Hamburger Menu -->
+    <link rel="stylesheet" href="{{ asset('assets/css/hamburgers/hamburgers.css') }}">
 
-                        <h1 class="">Log In to <a href="index-2.html"><span class="brand-name">CMM</span></a></h1>
-                        <p class="signup-link">New Here? <a href="auth_register.html">Create an account</a></p>
-                        <form class="text-left" method="post">
-                            <div class="form">
-                                {% if error %}
-                                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                                {% endif %}
-                                <div id="username-field" class="field-wrapper input">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round" class="feather feather-user">
-                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                    </svg>
-                                    <input id="username" name="username" type="text" class="form-control"
-                                           placeholder="Username">
-                                </div>
+    <!-- CSS - REQUIRED - END -->
 
-                                <div id="password-field" class="field-wrapper input mb-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round" class="feather feather-lock">
-                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                    </svg>
-                                    <input id="password" name="password" type="password" class="form-control"
-                                           placeholder="Password">
-                                </div>
-                                <div class="d-sm-flex justify-content-between">
-                                    <div class="field-wrapper toggle-pass">
-                                        <p class="d-inline-block">Show Password</p>
-                                        <label class="switch s-primary">
-                                            <input type="checkbox" id="toggle-password" class="d-none">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                    <div class="field-wrapper">
-                                        <button type="submit" class="btn btn-primary" value="">Log In</button>
-                                    </div>
+    <!-- CSS - OPTIONAL - START -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome/css/font-awesome.min.css') }}">
 
-                                </div>
+    <!-- CSS - DEMO - START -->
+    <link rel="stylesheet" href="{{ asset('assets/demo/css/ui-icons-batch-icons.css') }}">
+    <!-- CSS - DEMO - END -->
 
-                                <div class="field-wrapper text-center keep-logged-in">
-                                    <div class="n-chk new-checkbox checkbox-outline-primary">
-                                        <label class="new-control new-checkbox checkbox-outline-primary">
-                                            <input type="checkbox" class="new-control-input">
-                                            <span class="new-control-indicator"></span>Keep me logged in
-                                        </label>
-                                    </div>
-                                </div>
-                                <input type="hidden" name="_csrf_token"
-                                       value="{{ csrf_token('authenticate') }}"
-                                >
-                                <div class="field-wrapper">
-                                    <a href="auth_pass_recovery.html" class="forgot-pass-link">Forgot Password?</a>
-                                </div>
+    <!-- CSS - OPTIONAL - END -->
 
-                            </div>
-                        </form>
-                        <p class="terms-conditions">© 2019 All Rights Reserved. <a href="index-2.html">CMM</a> is a
-                            product of Designreset. <a href="javascript:void(0);">Cookie Preferences</a>, <a
-                                    href="javascript:void(0);">Privacy</a>, and <a href="javascript:void(0);">Terms</a>.
+    <!-- QuillPro Styles -->
+    <link rel="stylesheet" href="{{ asset('assets/css/quillpro/quillpro.css') }}">
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="right-column sisu">
+            <div class="row mx-0">
+                <div class="col-md-7 order-md-2 signin-right-column px-5 bg-dark" data-qp-bg-image="loginImage2.jpg">
+                    <a class="signin-logo d-sm-block d-md-none" href="#">
+                        <img src="{{ asset('assets/img/logo-white.png') }}" width="145" height="32.3" alt="QuillPro">
+                    </a>
+                    <h1 class="display-4">Sign In To get Started</h1>
+                    <p class="lead mb-5">
+                        Big data latte SpaceTeam unicorn cortado hacker physical computing paradigm.
+                    </p>
+                </div>
+                <div class="col-md-5 order-md-1 signin-left-column bg-white px-5">
+                    <a class="signin-logo d-sm-none d-md-block" href="#">
+                        <img src="{{ asset('assets/img/logo-dark.png') }}" width="145" height="32.3" alt="QuillPro">
+                    </a>
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" name="username" id="username"
+                                   aria-describedby="username" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Password">
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="keep-signed-in">
+                            <label class="custom-control-label" for="keep-signed-in">Keep Me Signed In</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-gradient btn-block">
+                            <i class="batch-icon batch-icon-key"></i>
+                            Sign In
+                        </button>
+                        <hr>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <p class="text-center">
+                            Don't Have An Account? <a href="{{ path('register') }}">Sign Up here</a>
                         </p>
-
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="form-image">
-            <div class="l-image">
-            </div>
-        </div>
     </div>
-    {#<form method="post">#}
-    {#    {% if error %}#}
-    {#        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
-    {#    {% endif %}#}
+</div>
 
-    {#    {% if app.user %}#}
-    {#        <div class="mb-3">#}
-    {#            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
-    {#        </div>#}
-    {#    {% endif %}#}
+<!-- SCRIPTS - REQUIRED START -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Bootstrap core JavaScript -->
+<!-- JQuery -->
+<script type="text/javascript" src="{{ asset('assets/js/jquery/jquery-3.4.1.min.js') }}"></script>
+<!-- Popper.js - Bootstrap tooltips -->
+<script type="text/javascript" src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
+<!-- Velocity -->
+<script type="text/javascript" src="{{ asset('assets/plugins/velocity/velocity.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/plugins/velocity/velocity.ui.min.js') }}"></script>
+<!-- Custom Scrollbar -->
+<script type="text/javascript"
+        src="{{ asset('assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<!-- jQuery Visible -->
+<script type="text/javascript" src="{{ asset('assets/plugins/jquery_visible/jquery.visible.min.js') }}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script type="text/javascript" src="{{ asset('assets/js/misc/ie10-viewport-bug-workaround.js') }}"></script>
 
-    {#    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>#}
-    {#    <label for="inputUsername">Username</label>#}
-    {#    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>#}
-    {#    <label for="inputPassword">Password</label>#}
-    {#    <input type="password" name="password" id="inputPassword" class="form-control" required>#}
+<!-- SCRIPTS - REQUIRED END -->
 
-    {#    <input type="hidden" name="_csrf_token"#}
-    {#           value="{{ csrf_token('authenticate') }}"#}
-    {#    >#}
+<!-- SCRIPTS - OPTIONAL START -->
+<!-- Image Placeholder -->
+<script type="text/javascript" src="{{ asset('assets/js/misc/holder.min.js') }}"></script>
+<!-- SCRIPTS - OPTIONAL END -->
 
-    {#    #}{##}
-    {#        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
-    {#        See https://symfony.com/doc/current/security/remember_me.html#}
+<!-- QuillPro Scripts -->
+<script type="text/javascript" src="{{ asset('assets/js/scripts-jquery.js') }}"></script>
+<!-- Fullstory Session - End -->
+</body>
+</html>
+{#{% extends 'base.html.twig' %}#}
 
-    {#        <div class="checkbox mb-3">#}
-    {#            <label>#}
-    {#                <input type="checkbox" name="_remember_me"> Remember me#}
-    {#            </label>#}
-    {#        </div>#}
-    {#    #}
+{#{% block title %}Log in!{% endblock %}#}
+{#{% block stylesheets %}#}
+{#    <link href="/css/authentication/form-1.css" rel="stylesheet" type="text/css"/>#}
+{#    <!-- END GLOBAL MANDATORY STYLES -->#}
+{#    <link rel="stylesheet" type="text/css" href="/css/forms/theme-checkbox-radio.css">#}
+{#    <link rel="stylesheet" type="text/css" href="/css/forms/switches.css">#}
+{#{% endblock %}#}
 
-    {#    <button class="btn btn-lg btn-primary" type="submit">#}
-    {#        Sign in#}
-    {#    </button>#}
-    {#</form>#}
-    <script src="/js/authentication/form-1.js"></script>
-{% endblock %}
+{#{% block body %}#}
+
+{#    <div class="form-container">#}
+{#        <div class="form-form">#}
+{#            <div class="form-form-wrap">#}
+{#                <div class="form-container">#}
+{#                    <div class="form-content">#}
+
+{#                        <h1 class="">Log In to <a href="index-2.html"><span class="brand-name">CMM</span></a></h1>#}
+{#                        <p class="signup-link">New Here? <a href="auth_register.html">Create an account</a></p>#}
+{#                        <form class="text-left" method="post">#}
+{#                            <div class="form">#}
+{#                                {% if error %}#}
+{#                                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+{#                                {% endif %}#}
+{#                                <div id="username-field" class="field-wrapper input">#}
+{#                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"#}
+{#                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"#}
+{#                                         stroke-linejoin="round" class="feather feather-user">#}
+{#                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>#}
+{#                                        <circle cx="12" cy="7" r="4"></circle>#}
+{#                                    </svg>#}
+{#                                    <input id="username" name="username" type="text" class="form-control"#}
+{#                                           placeholder="Username">#}
+{#                                </div>#}
+
+{#                                <div id="password-field" class="field-wrapper input mb-2">#}
+{#                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"#}
+{#                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"#}
+{#                                         stroke-linejoin="round" class="feather feather-lock">#}
+{#                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>#}
+{#                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>#}
+{#                                    </svg>#}
+{#                                    <input id="password" name="password" type="password" class="form-control"#}
+{#                                           placeholder="Password">#}
+{#                                </div>#}
+{#                                <div class="d-sm-flex justify-content-between">#}
+{#                                    <div class="field-wrapper toggle-pass">#}
+{#                                        <p class="d-inline-block">Show Password</p>#}
+{#                                        <label class="switch s-primary">#}
+{#                                            <input type="checkbox" id="toggle-password" class="d-none">#}
+{#                                            <span class="slider round"></span>#}
+{#                                        </label>#}
+{#                                    </div>#}
+{#                                    <div class="field-wrapper">#}
+{#                                        <button type="submit" class="btn btn-primary" value="">Log In</button>#}
+{#                                    </div>#}
+
+{#                                </div>#}
+
+{#                                <div class="field-wrapper text-center keep-logged-in">#}
+{#                                    <div class="n-chk new-checkbox checkbox-outline-primary">#}
+{#                                        <label class="new-control new-checkbox checkbox-outline-primary">#}
+{#                                            <input type="checkbox" class="new-control-input">#}
+{#                                            <span class="new-control-indicator"></span>Keep me logged in#}
+{#                                        </label>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <input type="hidden" name="_csrf_token"#}
+{#                                       value="{{ csrf_token('authenticate') }}"#}
+{#                                >#}
+{#                                <div class="field-wrapper">#}
+{#                                    <a href="auth_pass_recovery.html" class="forgot-pass-link">Forgot Password?</a>#}
+{#                                </div>#}
+
+{#                            </div>#}
+{#                        </form>#}
+{#                        <p class="terms-conditions">© 2019 All Rights Reserved. <a href="index-2.html">CMM</a> is a#}
+{#                            product of Designreset. <a href="javascript:void(0);">Cookie Preferences</a>, <a#}
+{#                                    href="javascript:void(0);">Privacy</a>, and <a href="javascript:void(0);">Terms</a>.#}
+{#                        </p>#}
+
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="form-image">#}
+{#            <div class="l-image">#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    #}{#<form method="post">#}
+{#    #}{#    {% if error %}#}
+{#    #}{#        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+{#    #}{#    {% endif %}#}
+
+{#    #}{#    {% if app.user %}#}
+{#    #}{#        <div class="mb-3">#}
+{#    #}{#            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
+{#    #}{#        </div>#}
+{#    #}{#    {% endif %}#}
+
+{#    #}{#    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>#}
+{#    #}{#    <label for="inputUsername">Username</label>#}
+{#    #}{#    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>#}
+{#    #}{#    <label for="inputPassword">Password</label>#}
+{#    #}{#    <input type="password" name="password" id="inputPassword" class="form-control" required>#}
+
+{#    #}{#    <input type="hidden" name="_csrf_token"#}
+{#    #}{#           value="{{ csrf_token('authenticate') }}"#}
+{#    #}{#    >#}
+
+{#    #}{#    #}{##}{##}
+{#    #}{#        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
+{#    #}{#        See https://symfony.com/doc/current/security/remember_me.html#}
+
+{#    #}{#        <div class="checkbox mb-3">#}
+{#    #}{#            <label>#}
+{#    #}{#                <input type="checkbox" name="_remember_me"> Remember me#}
+{#    #}{#            </label>#}
+{#    #}{#        </div>#}
+{#    #}{#    #}
+
+{#    #}{#    <button class="btn btn-lg btn-primary" type="submit">#}
+{#    #}{#        Sign in#}
+{#    #}{#    </button>#}
+{#    #}{#</form>#}
+{#    <script src="/js/authentication/form-1.js"></script>#}
+{#{% endblock %}#}
